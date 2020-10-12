@@ -5,6 +5,7 @@ const session = require("express-session");
 const KnexSessionStore = require("connect-session-knex")(session);
 
 const loginRouter = require("../auth/loginRouter");
+const userRouter = require("../auth/getUsersRouter");
 const connection = require("../database/connection");
 const protected = require("../auth/protected-mw");
 
@@ -35,6 +36,7 @@ server.use(cors());
 server.use(session(sessionConfiguration));
 
 server.use("/api", loginRouter);
+server.use("/api/allusers", protected, userRouter);
 
 server.get("/", (req, res) => {
   res.json({ api: "Up", session: req.session });
