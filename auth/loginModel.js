@@ -3,7 +3,7 @@ const db = require("../database/connection.js");
 module.exports = {
   add,
   //   find,
-  //   findBy,
+  findBy,
 };
 
 function add(user) {
@@ -12,4 +12,8 @@ function add(user) {
   } catch (error) {
     throw error;
   }
+}
+
+function findBy(filter) {
+  return db("users").where(filter).orderBy("id");
 }

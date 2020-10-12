@@ -6,6 +6,7 @@ const KnexSessionStore = require("connect-session-knex")(session);
 
 const loginRouter = require("../auth/loginRouter");
 const connection = require("../database/connection");
+const protected = require("../auth/protected-mw");
 
 const server = express();
 
